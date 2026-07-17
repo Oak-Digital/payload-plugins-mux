@@ -1,5 +1,5 @@
 {
-	"name": "@oak-digital/mux-plugin",
+	"name": "@oversightstudio/mux-plugin",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -9,7 +9,7 @@
 		"release": "pnpm --filter=./packages/* publish --access public"
 	},
 	"keywords": [],
-	"author": "oversightstudio & oakdigital",
+	"author": "oversightstudio",
 	"license": "MIT",
 	"pnpm": {
 		"overrides": {

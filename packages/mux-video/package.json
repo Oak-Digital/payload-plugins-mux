@@ -1,5 +1,5 @@
 {
-	"name": "@oak-digital/mux-video",
+	"name": "@oversightstudio/mux-video",
 	"type": "module",
 	"version": "1.4.0",
 	"description": "Brings Mux Video to PayloadCMS.",
@@ -9,7 +9,7 @@
 	"license": "MIT",
 	"types": "./src/index.ts",
 	"main": "./src/index.ts",
-	"author": "oversightstudio & oakdigital",
+	"author": "oversightstudio",
 	"files": [
 		"dist"
 	],
