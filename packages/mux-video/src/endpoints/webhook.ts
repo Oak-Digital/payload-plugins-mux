@@ -1,7 +1,7 @@
-import { PayloadHandler } from 'payload'
+import type Mux from '@mux/mux-node'
+import type { PayloadHandler } from 'payload'
 import { getAssetMetadata } from '../lib/getAssetMetadata'
-import Mux from '@mux/mux-node'
-import { MuxVideoPluginOptions } from '../types'
+import type { MuxVideoPluginOptions } from '../types'
 
 const handleAssetErrored = (req: any, assetId: string, errors: any) => {
   req.payload.logger.error(`[payload-mux] Error with assetId: ${assetId}`)
@@ -9,27 +9,38 @@ const handleAssetErrored = (req: any, assetId: string, errors: any) => {
 }
 
 const createSuccessResponse = () => new Response('Success!', { status: 200 })
-const createErrorResponse = () => new Response('Error', { status: 204 })
+const createErrorResponse = () => new Response('Error', { status: 500 })
 
 export const muxWebhooksHandler =
   (mux: Mux, pluginOptions: MuxVideoPluginOptions): PayloadHandler =>
   async (req) => {
-    if (!req.json) {
-      return Response.error()
+    if (!req.text) {
+      return new Response('Invalid request', { status: 400 })
     }
 
-    const body = await req.json()
+    let event: any
 
-    if (!body) {
-      return Response.error()
+    try {
+      const rawBody = await req.text()
+      mux.webhooks.verifySignature(rawBody, req.headers)
+      event = JSON.parse(rawBody)
+    } catch (err) {
+      req.payload.logger.error('[payload-mux] Invalid Mux webhook request:')
+      req.payload.logger.error(err)
+      return new Response('Invalid Mux webhook request', { status: 400 })
     }
 
-    mux.webhooks.verifySignature(JSON.stringify(body), req.headers)
+    if (!event) {
+      return new Response('Invalid Mux webhook payload', { status: 400 })
+    }
 
     const collection = (pluginOptions.extendCollection as string) ?? 'mux-video'
 
-    const event = body
-    const assetId = event.object?.id
+    const assetId = event.object?.id ?? event.data?.id
+
+    if (!assetId) {
+      return createSuccessResponse()
+    }
 
     const videos = await req.payload.find({
       collection,
@@ -61,6 +72,10 @@ export const muxWebhooksHandler =
             },
           })
         } catch (err) {
+          req.payload.logger.error(
+            `[payload-mux] There was an error while creating video for asset ${assetId}:`,
+          )
+          req.payload.logger.error(err)
           return createErrorResponse()
         }
       }
@@ -80,6 +95,10 @@ export const muxWebhooksHandler =
             },
           })
         } catch (err) {
+          req.payload.logger.error(
+            `[payload-mux] There was an error while updating video for asset ${assetId}:`,
+          )
+          req.payload.logger.error(err)
           return createErrorResponse()
         }
         break
@@ -92,6 +111,10 @@ export const muxWebhooksHandler =
             id: video.id,
           })
         } catch (err) {
+          req.payload.logger.error(
+            `[payload-mux] There was an error while deleting video for asset ${assetId}:`,
+          )
+          req.payload.logger.error(err)
           return createErrorResponse()
         }
         break
