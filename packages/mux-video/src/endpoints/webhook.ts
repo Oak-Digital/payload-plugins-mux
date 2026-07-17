@@ -70,7 +70,6 @@ export const muxWebhooksHandler =
               assetId,
               ...getAssetMetadata(event.data),
             },
-            overrideAccess: true,
           })
         } catch (err) {
           req.payload.logger.error(
@@ -94,7 +93,6 @@ export const muxWebhooksHandler =
             data: {
               ...getAssetMetadata(event.data),
             },
-            overrideAccess: true,
           })
         } catch (err) {
           req.payload.logger.error(
@@ -111,7 +109,6 @@ export const muxWebhooksHandler =
           await req.payload.delete({
             collection,
             id: video.id,
-            overrideAccess: true,
           })
         } catch (err) {
           req.payload.logger.error(
