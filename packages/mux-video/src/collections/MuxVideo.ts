@@ -15,10 +15,8 @@ export const MuxVideo = (mux: Mux, pluginOptions: MuxVideoPluginOptions): Collec
   access: {
     read: ({ req }) => pluginOptions.access?.(req) ?? defaultAccessFunction(req),
   },
-  folders: true,
   admin: {
     useAsTitle: 'title',
-    group: 'Assets',
     defaultColumns: ['title', 'muxUploader', 'duration'],
   },
   hooks: {
