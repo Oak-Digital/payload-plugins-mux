@@ -1,7 +1,7 @@
 {
 	"name": "@oak-digital/mux-video",
 	"type": "module",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"description": "Brings Mux Video to PayloadCMS.",
 	"private": false,
 	"bugs": "https://github.com/Oak-Digital/payload-plugins-mux/issues",
@@ -52,7 +52,8 @@
 	},
 	"dependencies": {
 		"@mux/mux-node": "^11.1.0",
-		"@mux/mux-uploader-react": "^1.2.0"
+		"@mux/mux-uploader-react": "^1.2.0",
+		"bumpp": "^12.0.0"
 	},
 	"publishConfig": {
 		"exports": {
