@@ -1,7 +1,0 @@
-packages:
-  - packages/*
-  - dev
-ignoredBuiltDependencies:
-  - esbuild
-onlyBuiltDependencies:
-  - sharp
