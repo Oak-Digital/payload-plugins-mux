@@ -1,14 +1,14 @@
 {
 	"name": "@oak-digital/mux-video",
 	"type": "module",
-	"version": "1.4.2",
+	"version": "1.4.3",
 	"description": "Brings Mux Video to PayloadCMS.",
 	"private": false,
 	"bugs": "https://github.com/Oak-Digital/payload-plugins-mux/issues",
 	"repository": "https://github.com/Oak-Digital/payload-plugins-mux",
 	"license": "MIT",
-	"types": "./src/index.ts",
-	"main": "./src/index.ts",
+	"types": "./dist/index.d.ts",
+	"main": "./dist/index.js",
 	"author": "oversightstudio & oak-digital",
 	"files": [
 		"dist"
@@ -26,12 +26,14 @@
 	},
 	"exports": {
 		".": {
-			"import": "./src/index.ts",
-			"default": "./src/index.ts"
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
 		},
 		"./elements": {
-			"import": "./src/fields/index.ts",
-			"default": "./src/fields/index.ts"
+			"types": "./dist/fields/index.d.ts",
+			"import": "./dist/fields/index.js",
+			"default": "./dist/fields/index.js"
 		}
 	},
 	"devDependencies": {
@@ -56,20 +58,6 @@
 		"bumpp": "^12.0.0"
 	},
 	"publishConfig": {
-		"exports": {
-			".": {
-				"import": "./dist/index.js",
-				"require": "./dist/index.js",
-				"types": "./dist/index.d.ts"
-			},
-			"./elements": {
-				"import": "./dist/fields/index.js",
-				"require": "./dist/fields/index.js",
-				"types": "./dist/fields/index.d.ts"
-			}
-		},
-		"main": "./dist/index.js",
-		"registry": "https://registry.npmjs.org/",
-		"types": "./dist/index.d.ts"
+		"registry": "https://registry.npmjs.org/"
 	}
 }
