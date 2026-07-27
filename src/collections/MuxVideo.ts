@@ -35,12 +35,12 @@ export const MuxVideo = (mux: Mux, pluginOptions: MuxVideoPluginOptions): Collec
       type: 'ui',
       admin: {
         components: {
-          Field: '@oversightstudio/mux-video/elements#MuxUploaderField',
+          Field: '@oak-digital/mux-video/elements#MuxUploaderField',
           Cell:
             pluginOptions.adminThumbnail === 'gif'
-              ? '@oversightstudio/mux-video/elements#MuxVideoGifCell'
+              ? '@oak-digital/mux-video/elements#MuxVideoGifCell'
               : pluginOptions.adminThumbnail === 'image'
-                ? '@oversightstudio/mux-video/elements#MuxVideoImageCell'
+                ? '@oak-digital/mux-video/elements#MuxVideoImageCell'
                 : undefined,
         },
       },

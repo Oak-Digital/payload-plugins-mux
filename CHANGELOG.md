@@ -1,4 +1,4 @@
-# @oversightstudio/mux-video
+# @oak-digital/mux-video
 
 ## 1.4.0
 

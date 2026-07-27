@@ -1,7 +1,7 @@
 # Mux Video Payload Plugin
 
 ## Install
-`pnpm add @oversightstudio/mux-video @mux/mux-player-react`
+`pnpm add @oak-digital/mux-video @mux/mux-player-react`
 
 ## About
 This plugin brings Mux Video to Payload! It creates a “Videos” collection within the admin panel, making it simple to upload videos directly to Mux and manage them.
@@ -21,7 +21,7 @@ To get started, you’ll need to generate your MUX tokens and secrets from the M
 ### Public Setup
 ```tsx
 import { buildConfig } from 'payload'
-import { muxVideoPlugin } from '@oversightstudio/mux-video'
+import { muxVideoPlugin } from '@oak-digital/mux-video'
 
 export default buildConfig({
   plugins: [
@@ -45,7 +45,7 @@ export default buildConfig({
 ### Signed URLs Setup
 ```tsx
 import { buildConfig } from 'payload'
-import { muxVideoPlugin } from '@oversightstudio/mux-video'
+import { muxVideoPlugin } from '@oak-digital/mux-video'
 
 export default buildConfig({
   plugins: [
